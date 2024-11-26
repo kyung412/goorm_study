@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiosk</title>
+  <link rel="stylesheet" href="/goorm_study/css/kiosk_easy.css">
+</head>
+<body>
+  <div class="Kiosk">
+    <h1>Kiosk</h1>
+    <div class="product-container">
+      <div class="product" data-name="coffee" data-price="3000">
+        <img src="/goorm_study/img/커피.jpg" alt="coffee-img" class="coffee-img">
+        <div class="product-info">
+          <p class="product-name">coffee</p>
+          <p class="product-price">3000</p>
+        </div>
+      </div>
+      <div class="product" data-name="tea" data-price="2500">
+        <img src="/goorm_study/img/차.jpg" alt="tea-img" class="tea-img">
+        <div class="product-info">
+          <p class="product-name">tea</p>
+          <p class="product-price">2500</p>
+        </div>
+      </div>
+      <div class="product" data-name="cake" data-price="4000">
+        <img src="/goorm_study/img/케이크.jpg" alt="cake-img" class="cake-img">
+        <div class="product-info">
+          <p class="product-name">cake</p>
+          <p class="product-price">4000</p>
+        </div>
+      </div>
+    </div>
+    <div class="cart-summary">
+      <div class="quantity">
+        <span>수량</span>
+        <strong id="quantity">0</strong>
+      </div>
+      <div class="total">
+        <span>합계</span>
+        <strong id="total">0</strong>
+      </div>
+      <button class="pay-button">결제</button>
+    </div>
+  </div>
+  <script src="/goorm_study/js/kiosk_easy.js"></script>
+</body>
+</html>
