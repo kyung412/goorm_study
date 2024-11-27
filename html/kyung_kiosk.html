@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kiosk</title>
-  <link rel="stylesheet" href="/goorm_study/css/kiosk_easy.css">
+  <link rel="stylesheet" href="/goorm_study/css/kyung_kiosk.css">
 </head>
 <body>
   <div class="Kiosk">
@@ -32,18 +32,39 @@
         </div>
       </div>
     </div>
-    <div class="cart-summary">
-      <div class="quantity">
-        <span>수량</span>
-        <strong id="quantity">0</strong>
+
+    <div class="cart">
+      <table class="cart-items">
+        <thead>
+          <tr>
+            <th>메뉴</th>
+            <th>가격</th>
+            <th>수량</th>
+          </tr>
+        </thead>
+        <tbody id="cart-body">
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div class="summary">
+          <div class="quantity">
+            <span>수량</span>
+            <strong id="quantity">0</strong>
+          </div>
+          <div class="total">
+            <span>금액</span>
+            <strong id="totalAmount">0</strong>
+          </div>
+        </div>
+        <button class="clear-button">전체 취소</button>
+        <button class="pay-button">주문</button>
       </div>
-      <div class="total">
-        <span>합계</span>
-        <strong id="total">0</strong>
-      </div>
-      <button class="pay-button">결제</button>
+      
+    </div>
+    </div>
     </div>
   </div>
-  <script src="/goorm_study/js/kiosk_easy.js"></script>
+  <script src="/goorm_study/js/kyung_kiosk.js"></script>
 </body>
 </html>
