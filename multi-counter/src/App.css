@@ -1,0 +1,26 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+#root > div {
+  display: inherit;
+  flex-direction: column;
+  gap: 12px;
+}
+.counter {
+  display: inherit;
+  gap: 24px;
+}
+.counter > span {
+  display: inherit;
+  align-items: center;
+}
+.counter > span:nth-of-type(2) {
+  width: 100px;
+  justify-content: flex-end;
+}
