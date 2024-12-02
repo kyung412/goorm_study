@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Counter from "./Counter";
 function CounterList({ counters, onIncrease, onDecrease }) {
   return (

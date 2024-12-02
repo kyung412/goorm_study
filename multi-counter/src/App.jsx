@@ -4,7 +4,7 @@ import Total from "./Total";
 import './App.css';
 
 function App() {
-  const [counters, setCounters] = useState([0, 0, 0]); // 카운터 상태 배열
+  const [counters, setCounters] = useState([0, 0, 0]); 
 
   const increase = (index) => {
     setCounters((prev) =>
