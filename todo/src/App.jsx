@@ -45,7 +45,8 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1>React To-Do List</h1>
+      <h1>Daily Task</h1>
+      
       <TodoInput addTodo={addTodo} />
       <TodoList
         todos={todos}
