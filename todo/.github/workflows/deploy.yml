@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.11.0 # Node.js 버전
+          node-version: 20.17.0 # Node.js 버전
 
       - name: Install dependencies
         working-directory: ./todo # todo 폴더로 경로 설정
