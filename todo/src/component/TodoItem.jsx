@@ -4,6 +4,7 @@ import { useState } from 'react';
 /**
  * TodoItem 컴포넌트
  * - 개별 할 일을 렌더링하고 수정, 완료 상태 변경, 삭제 기능을 제공
+ * - 등록 시간(time)을 표시
  */
 const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수정상태 관리
   const [isEditing, setIsEditing] = useState(false);    //현재 수정 중인지 여부
@@ -33,18 +34,43 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
       {/* 수정시 input 표시*/}
       {isEditing ? (
         //1. 수정 상태일 때 입력 필드 표시
-        <input
-          type="text"
-          value={editText}                              //수정 중인 텍스트 상태
-          onChange={(e) => setEditText(e.target.value)} //입력값 변경시 상태 업데이트
-        />
+        <div>
+          <input
+            type="text"
+            value={editText}                              //수정 중인 텍스트 상태
+            onChange={(e) => setEditText(e.target.value)} //입력값 변경시 상태 업데이트
+          />
+          <small style={{ display: 'block', color: 'gray' }}>
+            등록 시간: {todo.time}
+          </small>
+          {todo.updatedTime && (
+            <small style={{ display: 'block', color: 'gray' }}>
+              마지막 수정 시간: {todo.updatedTime}
+            </small>
+          )}
+          </div>
+        
+
+
       ) : (
+
         //2. 수정 상태가 아닐때 텍스트 표시
-        <span
+        <div>
+          <span
           style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} //완료된 항목은 취소선 적용
         >
           {todo.text}
-        </span>
+          </span>
+
+          <small style={{ display: 'block', color: 'gray' }}>
+            등록 시간: {todo.time}
+          </small>
+          {todo.updatedTime && (
+          <small style={{ display: 'block', color: 'gray' }}>
+            마지막 수정 시간: {todo.updatedTime}
+          </small>
+        )}
+        </div>
       )}
 
       {/* 수정/등록 버튼*/}
