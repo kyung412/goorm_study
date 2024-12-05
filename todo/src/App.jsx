@@ -27,10 +27,24 @@ function App() {
 
     /**
    * C (생성) - todo 등록
+   * 최초 등록 시간(time)을 추가
    */
+
   const addTodo = (text) => { //새로운 todos 상태에 추가
+    //최초 등록 옵션
+    const dayOption ={
+      year : '2-digit',
+      month: 'long',
+      day : 'numeric',
+      weekday : "long",
+      hour : '2-digit',
+      minute: '2-digit',
+      hour12: false
+      };
+
     setTodos([...todos, {     //기본 todos 배열에 새 할일 추가하여 상태 업데이트 
       id: Date.now(),    //고유 id 생성(현재 시각의 ms값을 이용)
+      time : new Date().toLocaleString('ko-KR', dayOption), //등록시간 추가
       text,              //사용자가 입력한 텍스트
       completed: false   //기본적으로 완료 상태는 false
     }]);
@@ -44,7 +58,7 @@ function App() {
   const updateTodo = (id, updatedText) => {
     setTodos(
       todos.map((todo) =>
-         (todo.id === id 
+        (todo.id === id 
           ? { ...todo, text: updatedText } //id가 일치하면 텍스트만 업데이트
           : todo)));                       //id가 다르면 기존 todo 유지
       /*
@@ -57,7 +71,7 @@ function App() {
   //2. 완료여부를 토글하는 핸들러 함수
   const toggleComplete = (id) => {
     setTodos(todos.map((todo) =>
-       (todo.id === id 
+      (todo.id === id 
         ? { ...todo, completed: !todo.completed } //id가 일치하면 완료 상태를 반전
         : todo)));                                //id가 다르면 기존 todo 유지
         
