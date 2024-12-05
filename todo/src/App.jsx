@@ -26,20 +26,20 @@ function App() {
 
 
     /**
-   * C (생성) - todo 등록
-   * 최초 등록 시간(time)을 추가
+   * C (생성) - 새로운 todo 등록
+   * - 등록 시간(time)과 초기 상태를 포함하여 새 항목 추가
    */
 
-  const addTodo = (text) => { //새로운 todos 상태에 추가
+  const addTodo = (text) => { 
     
-    const dayOption ={  //최초 등록 옵션
+    const dayOption ={  // 날짜 및 시간 포맷 옵션
       year : '2-digit',
       month: 'long',
       day : 'numeric',
       weekday : "long",
       hour : '2-digit',
       minute: '2-digit',
-      hour12: false
+      hour12: false 
     };
 
     setTodos([...todos, {     //기본 todos 배열에 새 할일 추가하여 상태 업데이트 
@@ -57,7 +57,7 @@ function App() {
 
   //1. 변경된 텍스트 반영 함수
   const updateTodo = (id, updatedText) => {
-    const dayOption = { 
+    const dayOption = { //날짜 및 시간 포맷 옵션
       year: '2-digit',
       month: 'long',
       day: 'numeric',
@@ -69,11 +69,12 @@ function App() {
 
     setTodos(
       todos.map((todo) =>
-        (todo.id === id 
-          ? { ...todo, text: updatedText, //텍스트 업데이트
+        (todo.id === id //수정할 todo의 id와 일치하는 경우
+          ? { ...todo,         //기존 todo의 모든 속성 유지
+            text: updatedText, //세로운 텍스트로 업데이트
             updatedTime : new Date().toLocaleString('ko-KR', dayOption)//수정 시간
-           } //id가 일치하면 텍스트만 업데이트
-          : todo)));                       //id가 다르면 기존 todo 유지
+            } 
+          : todo))); //id가 다르면 기존 todo 유지
       /*
       - todos 배열을 .map()으로 순회하며 id가 일치하는 항목을 찾음
       - 일치하는 항목은 ...todo를 사용해 기존 속성을 복사하고 text 속성만 updatedText로 덮어씌움
