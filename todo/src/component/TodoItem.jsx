@@ -29,49 +29,49 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
       {/* 체크박스 : 완료 상태를 토글 */}
       <input
         type="checkbox"
-        checked={todo.completed}                  //완료 상태 반영
-        onChange={() => toggleComplete(todo.id)}  //클릭 시 완료 상태 반영
+        checked={todo.completed} // 완료 상태 반영
+        onChange={() => toggleComplete(todo.id)} // 클릭 시 완료 상태 반영
       />
-
-      {/* 수정시 input 표시*/}
+  
+      {/* 텍스트와 등록 시간 */}
       {isEditing ? (
-        //1. 수정 상태일 때 입력 필드 표시
-        <div>
+        <div className={style.content}>
           <input
             type="text"
-            value={editText}                              //수정 중인 텍스트 상태
-            onChange={(e) => setEditText(e.target.value)} //입력값 변경시 상태 업데이트
+            value={editText} // 수정 중인 텍스트 상태
+            onChange={(e) => setEditText(e.target.value)} // 입력값 변경 시 상태 업데이트
           />
-          <small style={{ display: 'block', color: 'gray' }}>
-            {todo.time} 
-          </small>
-          </div>
-        
-
-
+        </div>
       ) : (
-
-        //2. 수정 상태가 아닐때 텍스트 표시
-        <div>
+        <div className={style.content}>
           <span
-          style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} //완료된 항목은 취소선 적용
-        >
-          {todo.text}
+            style={{
+              textDecoration: todo.completed ? 'line-through' : 'none',
+            }}
+          >
+            {todo.text}
           </span>
-
-          <small style={{ display: 'block', color: 'gray' }}>
-            {todo.time}
-          </small>
+  
+          <div className={style.rightSection}>
+            <small className={style.time}>{todo.time}</small>
+            <div className={style.buttons}>
+              <button
+                className={style.editButton}
+                onClick={handleEdit}
+              >
+                {isEditing ? '등록' : '수정'}
+              </button>
+              <button
+                className={style.deleteButton}
+                onClick={() => deleteTodo(todo.id)}
+              >
+                삭제
+              </button>
+            </div>
+          </div>
         </div>
       )}
-
-      {/* 수정/등록 버튼*/}
-      <button onClick={handleEdit}> {isEditing ? '등록' : '수정'}</button>
-
-      {/* 삭제 버튼 */}
-      <button onClick={() => deleteTodo(todo.id)}>삭제</button>
     </li>
   );
-};
-
+};  
 export default TodoItem;

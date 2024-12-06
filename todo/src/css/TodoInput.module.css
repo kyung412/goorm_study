@@ -10,3 +10,17 @@
   flex: 1;
   border: 1px solid #ddd;
 }
+
+.addTodoButton {
+  background-color: #28a745; 
+  color: #ffffff; 
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addTodoButton:hover {
+  background-color: #218838; 
+}

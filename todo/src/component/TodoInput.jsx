@@ -43,7 +43,7 @@ const TodoInput = ({ addTodo }) => {
         placeholder="오늘 해야하는 일을 등록해 주세요🔥"
         className={style.todoInput}                
       />
-      <button onClick={handleAdd}> 할 일 등록 </button>
+      <button className={style.addTodoButton} onClick={handleAdd}> 추가하기 </button>
     </div>
   );
 };
