@@ -1,6 +1,8 @@
 
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import style from "../css/TodoItem.module.css";
+
 /**
  * TodoItem 컴포넌트
  * - 개별 할 일을 렌더링하고 수정, 완료 상태 변경, 삭제 기능을 제공
@@ -23,7 +25,7 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
   };
 
   return (
-    <li>
+    <li className={style.li}>
       {/* 체크박스 : 완료 상태를 토글 */}
       <input
         type="checkbox"
