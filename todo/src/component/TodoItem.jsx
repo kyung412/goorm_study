@@ -43,13 +43,8 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
             onChange={(e) => setEditText(e.target.value)} //입력값 변경시 상태 업데이트
           />
           <small style={{ display: 'block', color: 'gray' }}>
-            등록 시간: {todo.time}
+            {todo.time} 
           </small>
-          {todo.updatedTime && (
-            <small style={{ display: 'block', color: 'gray' }}>
-              마지막 수정 시간: {todo.updatedTime}
-            </small>
-          )}
           </div>
         
 
@@ -65,13 +60,8 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
           </span>
 
           <small style={{ display: 'block', color: 'gray' }}>
-            등록 시간: {todo.time}
+            {todo.time}
           </small>
-          {todo.updatedTime && (
-          <small style={{ display: 'block', color: 'gray' }}>
-            마지막 수정 시간: {todo.updatedTime}
-          </small>
-        )}
         </div>
       )}
 
