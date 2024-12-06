@@ -67,12 +67,14 @@ function App() {
       hour12: false,
     };
 
+    const updatedTime = new Date().toLocaleString('ko-KR', dayOption)
+
     setTodos(
       todos.map((todo) =>
         (todo.id === id //수정할 todo의 id와 일치하는 경우
           ? { ...todo,         //기존 todo의 모든 속성 유지
             text: updatedText, //세로운 텍스트로 업데이트
-            updatedTime : new Date().toLocaleString('ko-KR', dayOption)//수정 시간
+            time: updatedTime //등록 시간 필드를 수정된 시간으로 대체
             } 
           : todo))); //id가 다르면 기존 todo 유지
       /*
