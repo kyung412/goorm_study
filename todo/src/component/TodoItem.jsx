@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import style from "../css/TodoItem.module.css"; 
 import { Checkbox } from "antd";
+import { DeleteTwoTone, EditTwoTone, setTwoToneColor } from '@ant-design/icons';
 
 /**
  * TodoItem 컴포넌트
@@ -25,6 +26,7 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
     setIsEditing(!isEditing);           //수정 상태 토글
   };
 
+  setTwoToneColor('#747bff')
   return (
     <li className={style.li}>
       {/* 체크박스 : 완료 상태를 토글 */}
@@ -55,18 +57,13 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
           <div className={style.rightSection}>
             <small className={style.time}>{todo.time}</small>
             <div className={style.buttons}>
-              <button
-                className={style.editButton}
-                onClick={handleEdit}
-              >
-                {isEditing ? '등록' : '수정'}
+              <button onClick={handleEdit}>
+                {isEditing ? '등록': <EditTwoTone/>}
               </button>
-              <button
-                className={style.deleteButton}
-                onClick={() => deleteTodo(todo.id)}
-              >
-                삭제
+              <button onClick={() => deleteTodo(todo.id)}>
+                <DeleteTwoTone/>
               </button>
+            
             </div>
           </div>
         </div>

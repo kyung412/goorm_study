@@ -29,8 +29,6 @@ function App() {
    * - 등록 시간(time)과 초기 상태를 포함하여 새 항목 추가
    */
 
-  const addTodo = (text) => { 
-    
     const dayOption ={  // 날짜 및 시간 포맷 옵션
       month: '2-digit',
       day : '2-digit',
@@ -39,7 +37,7 @@ function App() {
       minute: '2-digit',
       hour12: false 
     };
-
+  const addTodo = (text) => { 
     setTodos([...todos, {     //기본 todos 배열에 새 할일 추가하여 상태 업데이트 
       id: Date.now(),    //고유 id 생성(현재 시각의 ms값을 이용)
       time : new Date().toLocaleString('ko-KR', dayOption), //등록시간 추가
@@ -55,17 +53,7 @@ function App() {
 
   //1. 변경된 텍스트 반영 함수
   const updateTodo = (id, updatedText) => {
-    const dayOption = { //날짜 및 시간 포맷 옵션
-      month: '2-digit',
-      day: '2-digit',
-      weekday: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    };
-
     const updatedTime = new Date().toLocaleString('ko-KR', dayOption)
-
     setTodos(
       todos.map((todo) =>
         (todo.id === id //수정할 todo의 id와 일치하는 경우
