@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import style from "../css/TodoItem.module.css"; 
+import { Checkbox } from "antd";
 
 /**
  * TodoItem 컴포넌트
@@ -27,8 +28,7 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => { //수�
   return (
     <li className={style.li}>
       {/* 체크박스 : 완료 상태를 토글 */}
-      <input
-        type="checkbox"
+      <Checkbox
         checked={todo.completed} // 완료 상태 반영
         onChange={() => toggleComplete(todo.id)} // 클릭 시 완료 상태 반영
       />

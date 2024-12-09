@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import TodoInput from './component/TodoInput';
 import TodoList from './component/TodoList';
 import styles from "./css/App.module.css";
+import {SearchOutlined} from '@ant-design/icons';
 
 function App() {
-  
-
 /**
  * R (읽기) - 로컬 스토리지에서 저장된 할 일 목록 읽어오기
  * 초기 상태를 로컬 스토리지에서 가져오거나, 없으면 빈 배열로 초기화
@@ -33,10 +32,9 @@ function App() {
   const addTodo = (text) => { 
     
     const dayOption ={  // 날짜 및 시간 포맷 옵션
-      year : '2-digit',
-      month: 'long',
-      day : 'numeric',
-      weekday : "long",
+      month: '2-digit',
+      day : '2-digit',
+      weekday : "short",
       hour : '2-digit',
       minute: '2-digit',
       hour12: false 
@@ -58,10 +56,9 @@ function App() {
   //1. 변경된 텍스트 반영 함수
   const updateTodo = (id, updatedText) => {
     const dayOption = { //날짜 및 시간 포맷 옵션
-      year: '2-digit',
-      month: 'long',
-      day: 'numeric',
-      weekday: 'long',
+      month: '2-digit',
+      day: '2-digit',
+      weekday: 'short',
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
@@ -111,17 +108,33 @@ function App() {
     */
   };
 
+  //검색 기능 추가
+  const [searchQuery, setSearchQuery] = useState("");//검색결과 상태값 선언
+  const filteredTodos = searchQuery
+  ? todos.filter((todo)=>todo.text.toLowerCase().includes(searchQuery.toLowerCase()))
+  : todos; //.toLowerCase()는 전부 소문자 처리하는 메소드로 검색시 대소문자 구분을 하지 않고 광범위하게 만드는 과정 
+
 
   return (
     <div className={styles.app}>
       <h1>Daily Task</h1>
-
+      
       {/* 할 일 추가 입력 컴포넌트 */}
       <TodoInput addTodo={addTodo} />
 
+      <div className={styles.searchInput}>
+        <SearchOutlined className={styles.ico}/>
+        <input 
+        type="search"
+        placeholder="할일을 검색할 수 있어요"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       {/* 할 일 목록 컴포넌트 */}
       <TodoList
-        todos={todos}                   //할 일 목록 데이터 전달
+        todos={filteredTodos}           //검색된 결과 전달
         updateTodo={updateTodo}         //텍스트 수정 함수 전달
         toggleComplete={toggleComplete} //완료 상태 변경 함수 전달
         deleteTodo={deleteTodo}         //삭제 함수 전달
@@ -132,3 +145,4 @@ function App() {
 }
 
 export default App;
+

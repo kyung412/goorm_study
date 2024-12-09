@@ -13,3 +13,24 @@
   gap: 48px;
   margin: 40px 0 0 0;
 }
+
+.searchInput {
+  align-self: flex-end;
+  position : relative;
+}
+
+.searchInput> .ico{
+  position: absolute;
+  top: 50%;
+  left:12px;
+  transform: translate(0, -50%);
+  color: #28a745;
+}
+
+.searchInput > input[type="search"]{
+  height: 40px;
+  border-radius: 4px;
+  padding: 8px 12px 8px 36px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}

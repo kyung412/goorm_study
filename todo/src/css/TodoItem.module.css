@@ -4,13 +4,6 @@ li {
   gap: 10px;
 }
 
-li input[type="checkbox"] {
-  accent-color: #28a745;
-  width: 24px;
-  aspect-ratio: 1;
-  cursor: pointer;
-}
-
 li input[type="text"] {
   height: 40px;
   border-radius: 4px;
