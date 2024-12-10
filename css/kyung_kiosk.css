@@ -100,7 +100,6 @@ h1 {
 .cart-summary {
   display: flex;
   justify-content: space-between;
-  align-items: ;
   padding: 12px;
   border-radius: 4px;
   gap: 10px;

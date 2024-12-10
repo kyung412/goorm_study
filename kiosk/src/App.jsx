@@ -1,8 +1,8 @@
 
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import Menu from "./components/Menu";
-import Cart from "./components/Cart";
+import Menu from "./component/Menu";
+import Cart from "./component/Cart";
 import styles from "./css/App.module.css";
 
 const App = () => {
@@ -39,15 +39,17 @@ const App = () => {
       };
     });
   };
+  const clearCart = () => setCartItems({});
 
   return (
     <div className={styles.app}>
-      <h1>React로 만든 키오스크</h1>
+      <h1>React Kiosk</h1>
       <Menu addToCart={addToCart} />
       <Cart
         cartItems={cartItems}
         setCartItems={setCartItems}
         updateItemCount={updateItemCount}
+        clearCart={clearCart}
       />
     </div>
   );

@@ -1,29 +1,30 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
 import CartItem from "./CartItem";
 import styles from "../css/Cart.module.css";
 
-const Cart = ({ cartItems, setCartItems, updateItemCount }) => {
+const Cart = ({ cartItems, updateItemCount, clearCart }) => {
   const totalAmount = Object.values(cartItems).reduce(
     (total, item) => total + item.price * item.count,
     0
   );
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cartItems");
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    }
-  }, [setCartItems]);
+  const totalQuantity = Object.values(cartItems).reduce(
+    (acc, item) => acc + item.count,
+    0
+  );
 
   return (
-    <section className={styles.cart}>
-      <h2>Cart</h2>
-      <div>
-        {Object.keys(cartItems).length === 0 ? (
-          <p>카트가 비었습니다.</p>
-        ) : (
-          Object.entries(cartItems).map(([name, item]) => (
+    <div className={styles.cart}>
+      <table className={`${styles.cartItems} ${Object.keys(cartItems).length ? styles.visible : ""}`}>
+        <thead>
+          <tr>
+            <th>메뉴</th>
+            <th>가격</th>
+            <th>수량</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(cartItems).map(([name, item]) => (
             <CartItem
               key={name}
               name={name}
@@ -31,11 +32,18 @@ const Cart = ({ cartItems, setCartItems, updateItemCount }) => {
               count={item.count}
               updateItemCount={updateItemCount}
             />
-          ))
-        )}
+          ))}
+        </tbody>
+      </table>
+      <div className={styles.cartSummary}>
+        <div>
+          <span>수량: {totalQuantity}</span>
+          <span>금액: {totalAmount.toLocaleString()}원</span>
+        </div>
+        <button onClick={clearCart}>전체 취소</button>
+        <button>주문</button>
       </div>
-      <h3 className={styles.total}>Total: {totalAmount.toLocaleString()}원</h3>
-    </section>
+    </div>
   );
 };
 
