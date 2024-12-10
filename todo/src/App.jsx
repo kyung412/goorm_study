@@ -107,9 +107,11 @@ function App() {
     <div className={styles.app}>
       <h1>Daily Task</h1>
       
-      {/* 할 일 추가 입력 컴포넌트 */}
+      {/* 할 일 추가 */}
       <TodoInput addTodo={addTodo} />
 
+
+      {/* 검색창 */}
       <div className={styles.searchInput}>
         <SearchOutlined className={styles.ico}/>
         <input 
@@ -120,7 +122,7 @@ function App() {
         />
       </div>
 
-      {/* 할 일 목록 컴포넌트 */}
+      {/* 할 일 목록 */}
       <TodoList
         todos={filteredTodos}           //검색된 결과 전달
         updateTodo={updateTodo}         //텍스트 수정 함수 전달
