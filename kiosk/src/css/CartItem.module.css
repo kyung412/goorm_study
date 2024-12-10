@@ -1,0 +1,32 @@
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.cartItem span {
+  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+}
+
+.cartItem button {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #533566;
+  color: white;
+}
+
+.cartItem button:hover {
+  background-color: #432953;
+}
+
+.cartItem button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

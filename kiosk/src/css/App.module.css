@@ -1,0 +1,14 @@
+.app {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Pretendard', sans-serif;
+  gap: 24px;
+  margin: 40px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #533566;
+}

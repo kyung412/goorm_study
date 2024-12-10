@@ -1,0 +1,34 @@
+.menu {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.buttons button.active {
+  color: #533566;
+  border-color: #533566;
+}
+
+.menuSwiper {
+  width: 100%;
+  padding: 20px 0;
+  --swiper-theme-color: #533566;
+}
