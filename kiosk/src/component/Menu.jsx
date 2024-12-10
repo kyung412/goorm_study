@@ -32,7 +32,7 @@ const Menu = ({ addToCart }) => {
       </div>
 
       <Swiper
-        spaceBetween={16}
+        spaceBetween={12}
         slidesPerView={3}
         pagination={{ clickable: true }}
         modules={[Pagination]}

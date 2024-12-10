@@ -7,13 +7,16 @@
   border-radius: 8px;
   padding: 12px;
   background-color: #fff;
+  width: 200px; 
+  box-sizing: border-box; 
 }
 
 .productImage {
-  width: 180px;
-  height: 180px;
+  width: 180px; 
+  height: 180px; 
   border-radius: 8px;
   margin-bottom: 8px;
+  object-fit: cover; 
   background-color: lightgray;
 }
 
@@ -23,6 +26,7 @@
 
 .productName {
   font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .productPrice {
@@ -30,4 +34,3 @@
   font-weight: bold;
   color: #5b76f5;
 }
-
