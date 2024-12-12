@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import style from "../css/TodoItem.module.css"; 
 import { Checkbox, Modal } from "antd";
-import { setTwoToneColor, DeleteTwoTone, EditTwoTone } from '@ant-design/icons';
+import { setTwoToneColor, DeleteTwoTone, EditTwoTone, CheckCircleTwoTone } from '@ant-design/icons';
 
 /**
  * TodoItem 컴포넌트
@@ -11,59 +11,47 @@ import { setTwoToneColor, DeleteTwoTone, EditTwoTone } from '@ant-design/icons';
 const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => {
   const [isEditing, setIsEditing] = useState(false); // 현재 수정 중인지 여부
   const [editText, setEditText] = useState(todo.text); // 수정 중인 텍스트
-  const [modalState, setModalState] = useState({ open: false, mode: '' }); // 모달 상태 관리
 
-  /**
-   * 수정 상태 전환 함수
-   */
-  const handleEditToggle = () => {
-    if (isEditing && editText.trim()) {
-      updateTodo(todo.id, editText); // 수정 사항 저장
-    }
-    setIsEditing(!isEditing); // 수정 상태 반전
+  //할일 수정 함수
+  const handleEdit = () => {
+    if (isEditing && editText.trim()){
+      showModal('edit');
+  }
+  setIsEditing(!isEditing);
   };
 
-  /**
-   * 엔터 키를 통해 수정 완료
-   */
+  //엔터키 입력 감지
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && editText.trim()) {
-      updateTodo(todo.id, editText);
-      setIsEditing(false);
-    }
-  };
-
-  /**
-   * 모달 열기
-   */
-  const showModal = (mode) => {
-    setModalState({ open: true, mode });
-  };
-
-  /**
-   * 모달 확인
-   */
-  const handleModalOk = () => {
-    if (modalState.mode === 'delete') {
-      deleteTodo(todo.id);
-    } else if (modalState.mode === 'edit' && editText.trim()) {
-      updateTodo(todo.id, editText);
-    }
-    setModalState({ open: false, mode: '' }); // 모달 닫기
-  };
-
-  /**
-   * 모달 취소
-   */
-  const handleModalCancel = () => {
-    if (modalState.mode === 'edit') {
-      setEditText(todo.text); // 수정 취소 시 텍스트 복원
-    }
-    setModalState({ open: false, mode: '' });
-  };
+    if (e.keyCode === 229) return;
+    if (e.key === 'Enter') handleEdit();
+    };
 
   setTwoToneColor('#747bff');
 
+  //모달
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 오픈 여부 초기값
+  const [mode, setMode] = useState(''); // 모달 종류 초기값 'delete' 또는 'edit'
+
+  
+  const showModal = (selectedMode) => {
+    setMode(selectedMode); // 모달 종류 설정
+    setIsModalOpen(true); // 모달 열기
+  };
+  
+  const handleOk = () => {
+    if (mode === 'delete') {
+        deleteTodo(todo.id); 
+    } else if (mode === 'edit') {
+      updateTodo(todo.id, editText); 
+    }
+      setIsModalOpen(false);
+  }; 
+
+  const handleCancel = () => {
+    if (mode === 'edit') setEditText(todo.text); // 수정 취소 시 텍스트 복원
+    setIsModalOpen(false); // 모달 닫기
+  };
+  
   return (
     <li className={style.li}>
       {/* 체크박스 : 완료 상태 토글 */}
@@ -81,19 +69,18 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => {
           onKeyDown={handleKeyDown}
         />
       ) : (
-        <span
-          style={{
-            textDecoration: todo.completed ? 'line-through' : 'none',
-          }}
-        >
-          {todo.text}
-        </span>
+        <div style={{ textDecoration: todo.completed ? 'line-through' : 'none', }}>
+          <span>{todo.text}</span>
+          <span>{todo.time}</span>
+        </div>
       )}
 
       {/* 수정 버튼 */}
-      <button onClick={() => (isEditing ? handleEditToggle() : showModal('edit'))}>
-        <EditTwoTone />
-      </button>
+      {!isEditing && (
+        <button type='button' onClick = {handleEdit}>
+        {isEditing ? <CheckCircleTwoTone /> : <EditTwoTone />}
+        </button>
+      )}
 
       {/* 삭제 버튼 */}
       <button onClick={() => showModal('delete')}>
@@ -102,19 +89,21 @@ const TodoItem = ({ todo, updateTodo, toggleComplete, deleteTodo }) => {
 
       {/* 모달 */}
       <Modal
-        title={modalState.mode === 'delete' ? '삭제 확인' : '수정 확인'}
-        open={modalState.open}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
+        title={mode === 'delete' ? '삭제 확인' : '수정 확인'}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
         okText="확인"
         cancelText="취소"
       >
-        {modalState.mode === 'delete'
+        {mode === 'delete'
           ? `'${todo.text}'를 삭제하시겠습니까?`
-          : `'${todo.text}'를 '${editText}'로 수정하시겠습니까?`}
+          : `'${todo.text}'를 '${editText}'(으)로 수정하시겠습니까?, 작성날짜도 변경됩니다.`}
       </Modal>
     </li>
   );
-};
+
+
+  };
 
 export default TodoItem;
